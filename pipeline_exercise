@@ -19,36 +19,44 @@ stages {
    
     stage('Job Description') {
             steps {
-                def desc = "${params.DESC}"
-                echo "$desc"
+                script {
+                    def desc = "${params.DESC}"
+                    echo "$desc"
+                }
             }
         }
         stage('Skip Test?') {
             steps {
-                def skip = "${params.SKIP_TEST}"
-                if(skip){
-                  echo 'Skipping Tests'
-                }
-                else{
-                  echo 'Not Skipping Tests'
+                script {
+                    def skip = "${params.SKIP_TEST}"
+                    if(skip){
+                      echo 'Skipping Tests'
+                    }
+                    else{
+                      echo 'Not Skipping Tests'
+                    }
                 }
             }
         }
         stage('Selecting branch') {
             steps {
-                def branch = "${params.BRANCH}"
-                if(branch == "Main"){
-                  echo 'Working on branch Main'
-                }
-                else{
-                  echo 'Working on branch Dev'
+                script {
+                    def branch = "${params.BRANCH}"
+                    if(branch == "Main"){
+                      echo 'Working on branch Main'
+                    }
+                    else{
+                      echo 'Working on branch Dev'
+                    }
                 }
             }
         }
         stage('Password set') {
             steps {
-                def pass = "${params.SONAR_SERVER_PWD}"
-                echo "$pass"
+                script {
+                    def pass = "${params.SONAR_SERVER_PWD}"
+                    echo "$pass"
+                }
             }
         }
     }
